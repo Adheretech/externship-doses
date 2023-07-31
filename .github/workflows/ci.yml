@@ -1,0 +1,110 @@
+---
+name: continuous integration
+
+on:
+  push:
+    branches:
+      - '**'
+    ignore-tags:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        target:
+
+          - directory: doses-api
+            release: doses-api
+            tag: ${GITHUB_SHA::8}
+
+          - directory: frontend
+            release: frontend
+            tag: ${GITHUB_SHA::8}
+
+      fail-fast: true
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v1
+        with:
+          clean: true
+
+      - uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Add GCR to Docker
+        run: gcloud auth configure-docker
+
+      - name: Build doses-api
+        run: echo true
+
+      - name: Push Doses-API to GCR
+        run: echo true
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        target:
+
+          - directory: doses-api
+            release: doses-api
+            tag: ${GITHUB_SHA::8}
+            port: 5000
+
+          - directory: infrastructure
+            release: krakend
+            tag: latest
+            port: 8080
+
+          - directory: frontend
+            release: frontend
+            tag: ${GITHUB_SHA::8}
+            port: 3000
+
+      fail-fast: true
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v1
+        with:
+          clean: true
+
+      - uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - id: 'get-credentials'
+        uses: 'google-github-actions/get-gke-credentials@v1'
+        with:
+          cluster_name: 'externship'
+          location: 'us-east1-d'
+
+      - name: Terraform init
+        run: echo true
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      - name: Terraform format
+        run: echo true
+
+      - name: Template
+        run: echo true
+
+      - name: Dry Run
+        run: echo true
+
+      - name: Deploy
+        run: echo true

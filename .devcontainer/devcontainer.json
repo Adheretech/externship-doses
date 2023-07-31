@@ -1,0 +1,39 @@
+{
+   "name":"AdhereTech Externship - Doses Microservice Application",
+   "image":"mcr.microsoft.com/devcontainers/universal:2-linux",
+   "features":{
+      "ghcr.io/devcontainers/features/go:1":{
+         "version":"1.20"
+      },
+      "ghcr.io/devcontainers/features/python:1":{
+         "version":"3.11"
+      },
+      "ghcr.io/mikaello/devcontainer-features/modern-shell-utils:1":{},
+      "ghcr.io/wxw-matt/devcontainer-features/script_runner:0":{}
+   },
+   "customizations":{
+      "vscode":{
+         "extensions":[
+            "MS-vsliveshare.vsliveshare",
+            "HashiCorp.terraform",
+            "github.vscode-github-actions",
+            "ms-azuretools.vscode-docker"
+         ],
+         "settings":{
+            "editor.tabSize":2,
+            "terminal.integrated.defaultProfile.linux":"tmux",
+            "terminal.integrated.shell.linux":"/usr/bin/tmux",
+            "terminal.integrated.profiles.linux":{
+               "bash":{
+                  "path":"bash"
+               },
+               "tmux":{
+                  "path":"tmux",
+                  "args": ["new-session", "-A", "-t", "adhere"]
+               }
+            }
+         }
+      }
+   },
+   "postStartCommand":"bash setup.sh",
+}

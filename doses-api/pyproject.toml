@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "dose-tracker"
+version = "0.1.0"
+description = ""
+authors = ["AdhereTech <j.ellis@adhereteh.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "dose_tracker"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Flask = "^2.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
