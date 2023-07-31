@@ -18,7 +18,7 @@ def healthz():
 
 def init_db():
     cur = get_db_connection().cursor()
-    with open("schema.sql") as f:
+    with open("structure.sql") as f:
         cur.executescript(f.read())
 
 if __name__ == "__main__":
