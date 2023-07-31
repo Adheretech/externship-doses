@@ -30,7 +30,7 @@ And generate GCP application credentials:
 gcloud auth application-default login
 ```
 
-## Application Structure:
+## Application Structure
 
 ### Backend
 
