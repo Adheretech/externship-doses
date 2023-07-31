@@ -2,7 +2,7 @@
 <img align="center" src="https://www.adheretech.com/images/AdhereTechLogo.png" alt="AdhereTech logo" width="600"/>
 </p>
 
-# AdhereTech Externship Doses Project
+# Externship Doses Project
 
 This project mirrors a simple service orientated architecture with a single
 backend and frontend. All aspects are Dockerized and will run within a
