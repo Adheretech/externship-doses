@@ -1,3 +1,7 @@
+<p align="center">
+<img align="center" src="https://www.adheretech.com/images/AdhereTechLogo.png" alt="AdhereTech logo" width="600"/>
+</p>
+
 # AdhereTech Externship Doses Project
 
 This project mirrors a simple service orientated architecture with a single
