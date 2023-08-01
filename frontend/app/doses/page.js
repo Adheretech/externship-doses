@@ -1,17 +1,31 @@
-import { promises as fs } from "fs"
-import path from "path"
-import "./page.css"
-import Link from "next/link"
+import { promises as fs } from "fs";
+import path from "path";
+import "./page.css";
+import Link from "next/link";
+import createDose from "../../lib/api";
+import { Console } from "console";
+
+// const getData = async () => {
+//   const dosesDirectory = path.join(process.cwd(), "data");
+//   const dosesJson = await fs.readFile(
+//     dosesDirectory + "/sampleDoseResponse.json",
+//     "utf8"
+//   );
+//   return JSON.parse(dosesJson);
+// };
 
 const getData = async () => {
-  const dosesDirectory = path.join(process.cwd(), "data")
-  const dosesJson = await fs.readFile(dosesDirectory + "/sampleDoseResponse.json", "utf8")
-  return JSON.parse(dosesJson)
-}
+  const res = await fetch("http://0.0.0.0:5001/getAllDoses", {
+    method: "GET",
+    cache: "no-store",
+  });
+  const dosesData = await res.json();
+  console.log(dosesData);
+  return dosesData;
+};
 
 export default async function Page() {
-  const res = await getData()
-  const doses = res.data
+  const doses = await getData();
 
   return (
     <div className="page-container">
@@ -30,15 +44,23 @@ export default async function Page() {
           </tr>
         </thead>
         <tbody>
-          {doses.map((dose, i) => (
-            <tr key={`dose${i}`}>
-              <td>{dose.patient}</td>
-              <td>{dose.medication}</td>
-              <td>{new Date(dose.doseTime).toLocaleString()}</td>
+          {doses.length > 0 ? (
+            doses.map((dose, i) => (
+              <tr key={dose.id}>
+                <td>{dose.patient}</td>
+                <td>{dose.medication}</td>
+                <td>{new Date(dose.dose_time).toLocaleString()}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No doses available</td>
+              <td>No doses available</td>
+              <td>No doses available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
-  )
+  );
 }

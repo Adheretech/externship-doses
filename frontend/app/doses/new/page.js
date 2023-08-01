@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import "./page.css"
-import Link from "next/link"
-import { Form, Input, Icon } from "semantic-ui-react"
+import "./page.css";
+import Link from "next/link";
+import { Form, Input, Icon } from "semantic-ui-react";
+import { useState } from "react";
 
 export default function Page() {
-  const handleSubmit = () => { }
+  const handleSubmit = () => {};
 
   return (
     <div className="form-container">
@@ -40,5 +41,5 @@ export default function Page() {
         </div>
       </Form>
     </div>
-  )
+  );
 }

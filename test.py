@@ -5,8 +5,8 @@ headers = {
 }
 
 data = json.dumps({
-  "patient": "Omar",
-  "medication": "Levothraxine",
+  "patient": "Hello",
+  "medication": "Generic",
 })
 
 
