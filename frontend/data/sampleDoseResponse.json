@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "patient": "Patient 1",
+      "medication": "Medication A",
+      "doseTime": "2001-01-01T12:34:56.789Z"
+    },
+    {
+      "patient": "Patient 2",
+      "medication": "Medication B",
+      "doseTime": "2023-07-22T06:43:16.517Z"
+    }
+  ]
+}
