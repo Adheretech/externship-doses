@@ -41,11 +41,11 @@ jobs:
       - name: Add GCR to Docker
         run: gcloud auth configure-docker
 
-      - name: Build doses-api
-        run: docker build -t gcr.io/externships/doses_api:latest -f ./doses-api/Dockerfile ./doses-api/
+      - name: Build Image
+        run: docker build -t gcr.io/externships/${{ matrix.target.directory }}:${{ matrix.target.tag }} -f ./${{ matrix.target.directory }}/Dockerfile ./${{ matrix.target.directory }}/
 
-      - name: Push Doses-API to GCR
-        run: docker push gcr.io/externships/doses_api:latest
+      - name: Push Image
+        run: docker push gcr.io/externships/${{ matrix.target.directory }}:${{ matrix.target.tag }}
 
   deploy:
     needs: [build]
