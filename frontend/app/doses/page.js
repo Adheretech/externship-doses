@@ -15,7 +15,7 @@ import axios from "axios";
 // };
 
 // const getData = async () => {
-//   const res = await axios("http://0.0.0.0:5001/getAllDoses", {
+//   const res = await fetch("http://0.0.0.0:5001/getAllDoses", {
 //     method: "GET",
 //     cache: "no-store",
 //   });
@@ -25,15 +25,21 @@ import axios from "axios";
 // };
 
 const getData = async () => {
+  const DOSES_ENDPOINT_URL = process.env.DOSES_ENDPOINT_URL;
+  const DOSES_ENDPOINT_PORT = process.env.DOSES_ENDPOINT_PORT;
+  console.log(`${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/getAllDoses`);
   try {
-    const response = await axios.get("http://0.0.0.0:5001/getAllDoses", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.get(
+      `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/getAllDoses`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const dosesData = response.data;
-    console.log(dosesData);
+    // console.log(dosesData);
     return dosesData;
   } catch (error) {
     console.error("Error fetching data:", error);
