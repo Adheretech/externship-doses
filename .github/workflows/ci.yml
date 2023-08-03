@@ -45,7 +45,7 @@ jobs:
         run: docker build -t doses_api:latest -f ./doses-api/Dockerfile .
 
       - name: Push Doses-API to GCR
-        run: echo true
+        run: docker push gcr.io/externship/doses_api:latest
 
   deploy:
     needs: [build]
