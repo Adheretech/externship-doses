@@ -1,4 +1,9 @@
-const fetcher = async ({ url, method, body, json = true }) => {
+const fetcher = async ({
+  url,
+  method,
+  body,
+  json = true
+}) => {
   const res = await fetch(url, {
     method,
     body: body && JSON.stringify(body),
@@ -22,6 +27,7 @@ const fetcher = async ({ url, method, body, json = true }) => {
 export const createDose = async (dose) => {
   const DOSES_ENDPOINT_URL = process.env.DOSES_ENDPOINT_URL;
   const DOSES_ENDPOINT_PORT = process.env.DOSES_ENDPOINT_PORT;
+  console.log(`${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`);
   return fetcher({
     url: `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`,
     method: "POST",
