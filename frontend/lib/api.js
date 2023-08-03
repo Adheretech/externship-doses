@@ -20,8 +20,10 @@ const fetcher = async ({ url, method, body, json = true }) => {
 };
 
 export const createDose = async (dose) => {
+  const DOSES_ENDPOINT_URL = process.env.DOSES_ENDPOINT_URL;
+  const DOSES_ENDPOINT_PORT = process.env.DOSES_ENDPOINT_PORT;
   return fetcher({
-    url: "http://0.0.0.0:5001/dose",
+    url: `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`,
     method: "POST",
     body: dose,
   });
