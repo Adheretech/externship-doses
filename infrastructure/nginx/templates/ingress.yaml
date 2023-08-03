@@ -2,18 +2,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "krakend.fullname" . }}
+  name: {{ include "nginx.fullname" . }}
   labels:
-    {{- include "krakend.labels" . | nindent 4 }}
+    {{- include "nginx.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ingressClassName: {{ include "krakend.fullname" . }}
+  ingressClassName: {{ include "nginx.fullname" . }}
   defaultBackend:
     service:
-      name: {{ include "krakend.fullname" . }}
+      name: {{ include "nginx.fullname" . }}
       port:
         number: 8080
 {{- end }}

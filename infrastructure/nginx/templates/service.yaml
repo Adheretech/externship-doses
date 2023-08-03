@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "krakend.fullname" . }}
+  name: {{ include "nginx.fullname" . }}
   labels:
-    kubernetes.io/ingress.global-static-ip-name: "krakend-externship"
+    kubernetes.io/ingress.global-static-ip-name: "nginx-externship"
 spec:
   type: {{ .Values.service.type }}
   loadBalancerIP: {{ .Values.externalIP }}
@@ -13,4 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "krakend.selectorLabels" . | nindent 4 }}
+    {{- include "nginx.selectorLabels" . | nindent 4 }}
