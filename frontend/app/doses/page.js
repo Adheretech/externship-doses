@@ -3,6 +3,7 @@ import path from "path";
 import "./page.css";
 import Link from "next/link";
 import { Console } from "console";
+import axios from "axios";
 
 // const getData = async () => {
 //   const dosesDirectory = path.join(process.cwd(), "data");
@@ -13,14 +14,31 @@ import { Console } from "console";
 //   return JSON.parse(dosesJson);
 // };
 
+// const getData = async () => {
+//   const res = await axios("http://0.0.0.0:5001/getAllDoses", {
+//     method: "GET",
+//     cache: "no-store",
+//   });
+//   const dosesData = res.data;
+//   console.log(dosesData);
+//   return dosesData;
+// };
+
 const getData = async () => {
-  const res = await fetch("http://0.0.0.0:5001/getAllDoses", {
-    method: "GET",
-    cache: "no-store",
-  });
-  const dosesData = await res.json();
-  console.log(dosesData);
-  return dosesData;
+  try {
+    const response = await axios.get("http://0.0.0.0:5001/getAllDoses", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    const dosesData = response.data;
+    console.log(dosesData);
+    return dosesData;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
 };
 
 export default async function Page() {
