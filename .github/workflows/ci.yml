@@ -42,7 +42,7 @@ jobs:
         run: gcloud auth configure-docker
 
       - name: Build doses-api
-        run: docker build -t doses_api:latest -f Dockerfile .
+        run: docker build -t doses_api:latest -f ./doses-api/Dockerfile .
 
       - name: Push Doses-API to GCR
         run: echo true
