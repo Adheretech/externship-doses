@@ -2,7 +2,7 @@ FROM node:16-alpine AS BUILD_IMAGE
 
 WORKDIR /app
 
-ENV DOSES_ENDPOINT_URL=http://doses-api
+ENV DOSES_ENDPOINT_URL=http://localhost
 ENV DOSES_ENDPOINT_PORT=5000
 
 COPY package*.json ./

@@ -1,3 +1,5 @@
+version: '2'
+
 services:
   frontend:
     build:
@@ -7,8 +9,11 @@ services:
       - "3000:3000"
     env_file:
       - ./.env
+    networks:
+      - doses_network
     environment:
-      DOSES_ENDPOINT_URL: http://doses-api
+      DOSES_POST_ENDPOINT: http://localhost
+      DOSES_GET_ENDPOINT: http://doses-api
       DOSES_ENDPOINT_PORT: 5000
     depends_on:
       - doses-api
@@ -17,10 +22,11 @@ services:
     build:
       context: doses-api
       dockerfile: ../doses-api/Dockerfile
+    networks:
+      - doses_network
     ports:
       - "5000:5000"
 
 networks:
-  default:
-    external:
-      name: doses_network
+  doses_network:
+    external: false
