@@ -62,7 +62,7 @@ jobs:
             port: 5000
 
           - directory: infrastructure
-            release: krakend
+            release: nginx
             tag: latest
             port: 8080
 
