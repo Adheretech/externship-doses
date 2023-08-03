@@ -2,7 +2,6 @@ import { promises as fs } from "fs";
 import path from "path";
 import "./page.css";
 import Link from "next/link";
-import createDose from "../../lib/api";
 import { Console } from "console";
 
 // const getData = async () => {

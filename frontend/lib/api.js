@@ -6,6 +6,7 @@ const fetcher = async ({ url, method, body, json = true }) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -20,7 +21,7 @@ const fetcher = async ({ url, method, body, json = true }) => {
 
 export const createDose = async (dose) => {
   return fetcher({
-    url: "0.0.0.0/api/dose",
+    url: "http://0.0.0.0:5001/dose",
     method: "POST",
     body: dose,
   });
