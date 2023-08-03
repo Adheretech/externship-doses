@@ -1,9 +1,6 @@
-const fetcher = async ({
-  url,
-  method,
-  body,
-  json = true
-}) => {
+import axios from "axios";
+
+const fetcher = async ({ url, method, body, json = true }) => {
   const res = await fetch(url, {
     method,
     body: body && JSON.stringify(body),
@@ -28,9 +25,21 @@ export const createDose = async (dose) => {
   const DOSES_ENDPOINT_URL = process.env.DOSES_ENDPOINT_URL;
   const DOSES_ENDPOINT_PORT = process.env.DOSES_ENDPOINT_PORT;
   console.log(`${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`);
-  return fetcher({
-    url: `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`,
-    method: "POST",
-    body: dose,
-  });
+  try {
+    const response = await axios.post(
+      `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/dose`,
+      dose,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error creating dose:", error);
+    throw error; // Rethrow the error to be handled by the calling code
+  }
 };
