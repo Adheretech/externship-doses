@@ -1,0 +1,16 @@
+.page-container {
+  padding: 30px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-button {
+  width: 105px;
+}
+
+.ui.table {
+  font-size: 14px;
+}

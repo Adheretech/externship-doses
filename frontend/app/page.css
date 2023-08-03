@@ -1,0 +1,31 @@
+.form-container {
+  width: 440px;
+  max-width: none;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+}
+
+.form-field {
+  margin-bottom: 24px;
+}
+
+.form-field label {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+
+.ui.input {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.actions > * {
+  width: 130px;
+  margin-left: 16px;
+}
