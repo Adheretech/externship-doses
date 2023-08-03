@@ -40,6 +40,6 @@ export const createDose = async (dose) => {
     return response.data;
   } catch (error) {
     console.error("Error creating dose:", error);
-    throw error; // Rethrow the error to be handled by the calling code
+    throw error;
   }
 };
