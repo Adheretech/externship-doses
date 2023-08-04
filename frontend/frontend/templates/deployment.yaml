@@ -39,13 +39,11 @@ spec:
               protocol: TCP
           env:
             - name: DOSES_POST_ENDPOINT
-              value: http://doses-api
+              value: http://35.231.16.85/api/v1/doses
             - name: DOSES_GET_ENDPOINT
               value:  http://doses-api
             - name: DOSES_ENDPOINT_PORT
               value: "5000"
-            - name: DOSES_POST_ENDPOINT
-              value: http://doses-api
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
