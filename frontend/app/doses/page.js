@@ -29,15 +29,12 @@ const getData = async () => {
   const DOSES_ENDPOINT_PORT = process.env.DOSES_ENDPOINT_PORT;
   console.log(`${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/getAllDoses`);
   try {
-    const response = await axios.get(
-      `${DOSES_ENDPOINT_URL}:${DOSES_ENDPOINT_PORT}/getAllDoses`,
-      {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.get(`${DOSES_ENDPOINT_URL}/api/v1/doses`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
     const dosesData = response.data;
     // console.log(dosesData);
     return dosesData;
