@@ -37,6 +37,15 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            - name: DOSES_POST_ENDPOINT
+              value: http://doses-api
+            - name: DOSES_GET_ENDPOINT
+              value:  http://doses-api
+            - name: DOSES_ENDPOINT_PORT
+              value: 5000
+            - name: DOSES_POST_ENDPOINT
+              value: http://doses-api
           # livenessProbe:
           #   httpGet:
           #     path: /
