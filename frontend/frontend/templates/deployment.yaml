@@ -43,7 +43,7 @@ spec:
             - name: DOSES_GET_ENDPOINT
               value:  http://doses-api
             - name: DOSES_ENDPOINT_PORT
-              value: 5000
+              value: "5000"
             - name: DOSES_POST_ENDPOINT
               value: http://doses-api
           resources:
