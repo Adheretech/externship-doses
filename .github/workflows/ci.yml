@@ -105,4 +105,4 @@ jobs:
         run: echo true
 
       - name: Deploy
-        run: helm upgrade --install ${{ matrix.target.directory }}:${{matrix.target.tag}} ./${{matrix.target.directory}}\ [flags]
+        run: helm upgrade --install ${{ matrix.target.directory }}-${{matrix.target.tag}} ./${{matrix.target.directory}}\ [flags]
